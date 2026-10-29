@@ -1,0 +1,16 @@
+# Virtual environment
+venv/
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# Secrets (API keys, passwords)
+.env
+
+# Mac system files
+.DS_Store
+
+# Packet captures (can contain private data like passwords)
+*.pcap
+*.pcapng
