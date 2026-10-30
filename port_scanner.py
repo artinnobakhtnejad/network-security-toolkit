@@ -50,7 +50,10 @@ def main():
                         help="seconds to wait for each port (default: 1.0)")
     args = parser.parse_args()
 
-    ip = socket.gethostbyname(args.target)
+    try:
+        ip = socket.gethostbyname(args.target)
+    except socket.gaierror:
+        parser.error(f"cannot find host '{args.target}' (check the spelling)")
     print(f"Scanning {args.target} ({ip}), ports {args.ports.start}-{args.ports.stop - 1}, "
           f"{args.threads} threads...")
     start = time.time()
