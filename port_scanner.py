@@ -4,6 +4,8 @@ import socket
 import time
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor
+from banners import grab_banner
+from services import service_name, warnings_for
 
 
 def scan_port(target, port, timeout):
@@ -57,9 +59,14 @@ def main():
         results = list(executor.map(lambda port: scan_port(ip, port, args.timeout), args.ports))
 
     elapsed = time.time() - start
-    for port, code in zip(args.ports, results):
-        if code == 0:
-            print(f"Port {port} is OPEN")
+    open_ports = [port for port, code in zip(args.ports, results) if code == 0]
+    if open_ports:
+        print(f"\n{'PORT':<8}{'SERVICE':<15}BANNER")
+    for port in open_ports:
+        banner = grab_banner(args.target, port)
+        print(f"{port:<8}{service_name(port):<15}{banner or '-'}")
+        for warning in warnings_for(port, banner):
+            print(f"{'':<8}WARNING: {warning}")
 
     states = Counter(port_state(code) for code in results)
     print(f"\nOpen: {states['open']}  Closed: {states['closed']}  Filtered: {states['filtered']}")
