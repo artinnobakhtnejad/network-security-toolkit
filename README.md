@@ -4,6 +4,8 @@ A Python toolkit that plays both sides of a network attack: a multithreaded **po
 
 I built it from scratch with Python sockets and Scapy to learn how tools like Nmap, Wireshark and Snort work underneath.
 
+![The detector (right) catching a port scan (left)](docs/demo.png)
+
 > ⚠️ Only scan or capture traffic on systems you own or have permission to test. See [Ethics and legal use](#ethics-and-legal-use).
 
 ## Features
@@ -126,6 +128,7 @@ Python 3.15 · `socket` · `concurrent.futures` · `argparse` · `re` · `loggin
 ## Author
 
 **Artin Nobakhtnejad**, Computer Science (Co-op) student at York University
+
 [LinkedIn](https://linkedin.com/in/artin-nobakhtnejad) · [GitHub](https://github.com/artinnobakhtnejad)
 
 Also see my [Phishing URL Detector](https://github.com/artinnobakhtnejad/phishing-detector), a machine learning project.
